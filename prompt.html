@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Star Lounge poster — prompt for ChatGPT</title>
+<style>
+  :root{--bg:#0d0b0a;--panel:#171310;--line:#2b241f;--text:#f5efe8;--muted:#a3948a;--gold:#e8b23a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:900px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:clamp(24px,5vw,34px);margin:0 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 22px;font-size:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+    margin:0 0 12px;font-weight:700}
+  pre{white-space:pre-wrap;word-wrap:break-word;margin:0;font:14px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#0a0807;border:1px solid var(--line);border-radius:10px;padding:16px;max-height:60vh;overflow:auto}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  button{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:10px;
+    padding:11px 18px;background:var(--gold);color:#22180a}
+  button.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  button:active{transform:translateY(1px)}
+  a{color:var(--gold);word-break:break-all}
+  ul{margin:8px 0 0;padding-left:20px}
+  li{margin:6px 0}
+  .muted{color:var(--muted)}
+  .ok{color:#6ee7a8;font-size:13px;opacity:0;transition:opacity .25s}
+  .ok.on{opacity:1}
+  code{background:#0a0807;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Star Lounge poster — prompt for ChatGPT</h1>
+  <p class="sub">Copy this into ChatGPT and attach the DJ Mast photo to the same message.</p>
+
+  <div class="card">
+    <h2>The prompt</h2>
+    <div class="bar">
+      <button id="copy">Copy prompt</button>
+      <button class="ghost" id="select">Select all</button>
+      <span class="ok" id="ok">Copied</span>
+    </div>
+    <pre id="prompt">Create a vertical event poster, 1080 x 1350 px (4:5).
+
+STYLE REFERENCE (match this layout and mood):
+https://base44.app/api/apps/6a3172262d5a858645013b11/files/mp/public/6a3172262d5a858645013b11/b2ee485a8_27305860a_whatsapp_image_1150686924119379.jpg
+
+Take from the reference: dark nightlife background, warm stage light and bokeh, bold condensed headline type, gold and deep red accents, clean text blocks across the bottom.
+
+FACE RULE: use the attached photo of DJ Mast exactly as provided. Do not redraw, beautify, retouch, recolour, smooth or alter his face in any way. You may cut him out, scale him, and replace the background behind him only.
+
+TEXT TO SET (spell exactly, do not invent other names):
+Top small caps: STAR LOUNGE PRESENTS
+Headline: DJ MAST
+Second line: BIRTHDAY
+Third line: CELEBRATION
+Date badge: 2 DEC 2026 / WEDNESDAY
+Offer ribbon: TABLE OFFER UGX 100K
+
+Section LIVE PERFORMANCES: Tooro Bwooy Smith, Starmoon, Wakanda FBM, Banton Star Bwooy, Dvj Max Owengabi
+Section MUSIC BY: Sam DJ, DJ Hash / DJ Venom, Fetty DJ, DJ Ivan, DJ Mateeka Pro, DJ Makky, DJ Ezzie, DJ Baala
+Section ON THE MIC: MC Nutty, MC Kadenge, MC Fresh, Mr Phimex
+Footer: STAR LOUNGE — KYENJOJO, KASIINA, ALONG FORT PORTAL ROAD
+
+LAYOUT: DJ Mast large on the right, headline stacked on the left, all the lists in a dark panel across the bottom. High contrast so it reads on a phone screen. No watermark, no lorem ipsum, no invented sponsors or logos.</pre>
+  </div>
+
+  <div class="card">
+    <h2>What you need to attach</h2>
+    <ul>
+      <li>The DJ Mast portrait: <span class="muted">the photo on the white wall</span></li>
+      <li>The reference flyer is linked in the prompt, so no need to attach it. If ChatGPT says it cannot open the link, attach this instead:<br>
+        <a href="https://base44.app/api/apps/6a3172262d5a858645013b11/files/mp/public/6a3172262d5a858645013b11/b2ee485a8_27305860a_whatsapp_image_1150686924119379.jpg">reference flyer (Backyard Sundays)</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Before you print or post</h2>
+    <ul>
+      <li>Image models misspell small text. Check every performer, DJ and MC name, the date and the venue word for word.</li>
+      <li>Check his face is unchanged. If it looks retouched, ask for a redo and repeat the face rule.</li>
+      <li>2 December 2026 is a Wednesday.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pre = document.getElementById('prompt');
+  var ok = document.getElementById('ok');
+  function flash(){ ok.classList.add('on'); setTimeout(function(){ ok.classList.remove('on'); }, 1600); }
+  document.getElementById('copy').addEventListener('click', function(){
+    var text = pre.innerText;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(flash, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); flash(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+  });
+  document.getElementById('select').addEventListener('click', function(){
+    var r = document.createRange(); r.selectNodeContents(pre);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  });
+})();
+</script>
+</body>
+</html>
