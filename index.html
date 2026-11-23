@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backyard Sundays — Fort City Valley Gardens</title>
+<meta name="description" content="Backyard Sundays at Fort City Valley Gardens, Kitumba. Majestic Band, DJ Karim, MC Cox Vibes. 22nd November 2026.">
+<meta property="og:title" content="Backyard Sundays — Fort City Valley Gardens">
+<meta property="og:description" content="Majestic Band, DJ Karim, MC Cox Vibes. 22nd November 2026.">
+<meta property="og:image" content="https://base44.app/api/apps/6a3172262d5a858645013b11/files/mp/public/6a3172262d5a858645013b11/b2ee485a8_27305860a_whatsapp_image_1150686924119379.jpg">
+<style>
+  :root{
+    --ink:#0a0908; --panel:#141110; --line:#2a2420; --text:#f4efe9;
+    --muted:#a8988c; --gold:#e8b23a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--ink);color:var(--text);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  a{color:var(--gold)}
+  .wrap{max-width:1080px;margin:0 auto;padding:22px}
+
+  header{text-align:center;padding:26px 0 6px}
+  .kicker{letter-spacing:.32em;text-transform:uppercase;font-size:11px;color:var(--muted)}
+  h1{font-size:clamp(30px,7vw,58px);margin:8px 0 4px;letter-spacing:-.02em;line-height:1.02}
+  h1 em{font-style:normal;color:var(--gold)}
+  .sub{color:var(--muted);font-size:14px}
+
+  .hero{margin:18px 0 8px;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+    background:var(--panel);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .hero img{display:block;width:100%;height:auto;cursor:zoom-in}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:12px;margin:20px 0 6px}
+  .fact{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .fact span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .fact b{font-size:15px;font-weight:600}
+
+  h2{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+    margin:34px 0 14px;font-weight:600}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+  .tile{position:relative;padding:0;border:0;background:var(--panel);border-radius:12px;
+    overflow:hidden;cursor:zoom-in;aspect-ratio:3/4;border:1px solid var(--line)}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease,filter .3s ease}
+  .tile:hover img{transform:scale(1.04)}
+  .tile::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45));opacity:0;transition:opacity .3s}
+  .tile:hover::after{opacity:1}
+
+  .cta{margin:34px 0 10px;padding:20px;border-radius:16px;text-align:center;
+    background:linear-gradient(180deg,#1a1512,#12100e);border:1px solid var(--line)}
+  .cta b{display:block;font-size:18px;margin-bottom:4px}
+  .btn{display:inline-block;margin-top:12px;padding:12px 22px;border-radius:999px;
+    background:var(--gold);color:#20180a;font-weight:700;text-decoration:none}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:26px 0 40px}
+
+  /* lightbox */
+  #lb{position:fixed;inset:0;background:rgba(6,5,4,.96);display:none;
+    align-items:center;justify-content:center;padding:18px;z-index:50}
+  #lb.on{display:flex}
+  #lb img{max-width:100%;max-height:88vh;border-radius:10px;
+    box-shadow:0 30px 80px rgba(0,0,0,.8)}
+  #lb button{position:absolute;background:rgba(255,255,255,.1);border:0;color:#fff;
+    width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1}
+  #close{top:18px;right:18px}
+  #prev{left:14px;top:50%;transform:translateY(-50%)}
+  #next{right:14px;top:50%;transform:translateY(-50%)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Fort City Valley Gardens presents</div>
+    <h1>Backyard <em>Sundays</em></h1>
+    <div class="sub">Sunday, 22nd November 2026 · Fort Valley Gardens, Kitumba</div>
+  </header>
+
+  <figure class="hero">
+    <img id="flyer" alt="Backyard Sundays flyer"
+      src="https://base44.app/api/apps/6a3172262d5a858645013b11/files/mp/public/6a3172262d5a858645013b11/b2ee485a8_27305860a_whatsapp_image_1150686924119379.jpg">
+  </figure>
+
+  <div class="facts">
+    <div class="fact"><span>Live band</span><b>Majestic Band · 9PM</b></div>
+    <div class="fact"><span>Music</span><b>DJ Karim</b></div>
+    <div class="fact"><span>Host</span><b>MC Cox Vibes</b></div>
+    <div class="fact"><span>On screen</span><b>Liverpool vs Man Utd</b></div>
+  </div>
+
+  <h2>The people</h2>
+  <div class="grid" id="grid"></div>
+
+  <div class="cta">
+    <b>Reserve a table worth 150K and win free nyama choma</b>
+    <div class="sub">Fort Valley Gardens, Kitumba — near Prompt Petrol Station, Fort Portal–Kampala highway</div>
+    <a class="btn" href="https://wa.me/256772824146">Book on WhatsApp</a>
+  </div>
+
+  <footer>Fort City Valley Gardens · Bookings +256 772 824 146 / +256 777 501 272</footer>
+</div>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button id="close" aria-label="Close">&times;</button>
+  <button id="prev" aria-label="Previous">&#8249;</button>
+  <img id="lbi" alt="">
+  <button id="next" aria-label="Next">&#8250;</button>
+</div>
+
+<script>
+(function(){
+  var BASE = "https://base44.app/api/apps/6a3172262d5a858645013b11/files/mp/public/6a3172262d5a858645013b11/";
+  var photos = [
+    "06a888fa3_021990945_whatsapp_image_2167960740761659.jpg",
+    "b2e6f9e2a_6041bb871_whatsapp_image_29136325299357790.jpg",
+    "e75dbbbbe_f6c6a6d67_whatsapp_image_1631041758006517.jpg",
+    "8f83a7f7f_9364a8901_whatsapp_image_1895460181482908.jpg",
+    "088dfef5f_43742c5b5_whatsapp_image_1008548652301958.jpg",
+    "2729ef5e6_370da0631_whatsapp_image_2998128240539011.jpg",
+    "2d1808592_797727c9a_whatsapp_image_1655549519382944.jpg",
+    "ce5be26a8_ed18fc594_whatsapp_image_29047749348239359.jpg",
+    "98e93d07d_3c0c68596_whatsapp_image_916822808090893.jpg",
+    "6a82f521b_933451150_whatsapp_image_1658392539065724.jpg",
+    "ebc26aab5_c3657179e_whatsapp_image_1297585815882517.jpg",
+    "4aabf4ab9_9031d658b_whatsapp_image_2393148451430694.jpg"
+  ];
+  var flyer = "b2ee485a8_27305860a_whatsapp_image_1150686924119379.jpg";
+  var all = [flyer].concat(photos);
+
+  var grid = document.getElementById("grid");
+  photos.forEach(function(name, i){
+    var b = document.createElement("button");
+    b.className = "tile";
+    b.type = "button";
+    b.setAttribute("aria-label", "Open photo " + (i + 1));
+    var img = document.createElement("img");
+    img.loading = i < 3 ? "eager" : "lazy";
+    img.decoding = "async";
+    img.alt = "Backyard Sundays photo " + (i + 1);
+    img.src = BASE + name;
+    b.appendChild(img);
+    b.addEventListener("click", function(){ open(i + 1); });
+    grid.appendChild(b);
+  });
+
+  var lb = document.getElementById("lb");
+  var lbi = document.getElementById("lbi");
+  var idx = 0;
+
+  function show(n){
+    idx = (n + all.length) % all.length;
+    lbi.src = BASE + all[idx];
+    lbi.alt = idx === 0 ? "Backyard Sundays flyer" : "Backyard Sundays photo " + idx;
+  }
+  function open(n){
+    show(n);
+    lb.classList.add("on");
+    document.body.style.overflow = "hidden";
+  }
+  function close(){
+    lb.classList.remove("on");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("close").addEventListener("click", close);
+  document.getElementById("prev").addEventListener("click", function(e){ e.stopPropagation(); show(idx - 1); });
+  document.getElementById("next").addEventListener("click", function(e){ e.stopPropagation(); show(idx + 1); });
+  lb.addEventListener("click", function(e){ if (e.target === lb) close(); });
+  document.addEventListener("keydown", function(e){
+    if (!lb.classList.contains("on")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(idx - 1);
+    if (e.key === "ArrowRight") show(idx + 1);
+  });
+  document.getElementById("flyer").addEventListener("click", function(){ open(0); });
+})();
+</script>
+</body>
+</html>
